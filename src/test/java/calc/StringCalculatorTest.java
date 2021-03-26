@@ -57,4 +57,14 @@ class StringCalculatorTest {
       );
    }
 
+   @Test
+   void newLineSeparationTest(){
+      String inputString = "1,2\n3,4";
+      int expectedSum = 10;
+
+      int actualSum = stringCalculator.add(inputString);
+
+      assertThat(actualSum).isEqualTo(expectedSum);
+   }
+
 }
