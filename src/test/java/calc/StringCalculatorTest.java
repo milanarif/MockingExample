@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 class StringCalculatorTest {
@@ -74,6 +75,16 @@ class StringCalculatorTest {
       int actualSum = stringCalculator.add(inputString);
 
       assertThat(actualSum).isEqualTo(expectedSum);
+   }
+
+   @Test
+   void negativeThrowsException(){
+      String inputString = "1,2,-3,2,-5";
+      String expectedMessage = "-3, -5";
+
+      Exception exception = assertThrows(IllegalArgumentException.class, () ->
+              stringCalculator.add(inputString));
+      assertThat(exception.getMessage()).isEqualTo(expectedMessage);
    }
 
 

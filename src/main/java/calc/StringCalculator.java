@@ -2,11 +2,14 @@ package calc;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class StringCalculator {
    int add(String inputString) {
       String delim = "[,|\n]";
+      List<Integer> exceptionNumber = new ArrayList<>();
       if(inputString.length() == 0){
          return 0;
       }
@@ -14,7 +17,13 @@ public class StringCalculator {
          delim = StringUtils.substringBetween(inputString, "//", "\n");
          inputString = inputString.substring(inputString.indexOf("\n")+1);
       }
-      return Arrays.stream(inputString.split(delim))
-              .mapToInt(Integer::parseInt).sum ();
+      int sum = Arrays.stream(inputString.split(delim))
+              .mapToInt(Integer::parseInt)
+              .peek(n -> {if (n < 0) exceptionNumber.add(n);})
+              .sum ();
+      if(exceptionNumber.isEmpty()){
+         return sum;
+      }
+      else throw new IllegalArgumentException(StringUtils.join(exceptionNumber).replaceAll("[\\[\\]]",""));
    }
 }
