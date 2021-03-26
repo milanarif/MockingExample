@@ -25,6 +25,7 @@ public class StringCalculator {
       if(exceptionNumber.isEmpty()){
          return sum;
       }
-      else throw new IllegalArgumentException(StringUtils.join(exceptionNumber).replaceAll("[\\[\\]]",""));
+      else
+         throw new IllegalArgumentException("negatives not allowed " + StringUtils.join(exceptionNumber).replaceAll("[\\[\\]]",""));
    }
 }

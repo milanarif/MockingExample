@@ -80,7 +80,7 @@ class StringCalculatorTest {
    @Test
    void negativeThrowsException(){
       String inputString = "1,2,-3,2,-5";
-      String expectedMessage = "-3, -5";
+      String expectedMessage = "negatives not allowed -3, -5";
 
       Exception exception = assertThrows(IllegalArgumentException.class, () ->
               stringCalculator.add(inputString));
@@ -96,6 +96,5 @@ class StringCalculatorTest {
 
       assertThat(actualSum).isEqualTo(expectedSum);
    }
-
 
 }
