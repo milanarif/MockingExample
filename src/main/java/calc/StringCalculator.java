@@ -20,6 +20,7 @@ public class StringCalculator {
       int sum = Arrays.stream(inputString.split(delim))
               .mapToInt(Integer::parseInt)
               .peek(n -> {if (n < 0) exceptionNumber.add(n);})
+              .filter(n -> n <= 1000)
               .sum ();
       if(exceptionNumber.isEmpty()){
          return sum;

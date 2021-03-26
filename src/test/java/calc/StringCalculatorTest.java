@@ -87,5 +87,15 @@ class StringCalculatorTest {
       assertThat(exception.getMessage()).isEqualTo(expectedMessage);
    }
 
+   @Test
+   void valuesOver1000(){
+      String inputString = "2,1001";
+      int expectedSum = 2;
+
+      int actualSum = stringCalculator.add(inputString);
+
+      assertThat(actualSum).isEqualTo(expectedSum);
+   }
+
 
 }
