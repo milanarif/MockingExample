@@ -8,7 +8,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 class StringCalculatorTest {
@@ -66,5 +65,16 @@ class StringCalculatorTest {
 
       assertThat(actualSum).isEqualTo(expectedSum);
    }
+
+   @Test
+   void optionalDelimiter(){
+      String inputString = "//;\n1;2";
+      int expectedSum = 3;
+
+      int actualSum = stringCalculator.add(inputString);
+
+      assertThat(actualSum).isEqualTo(expectedSum);
+   }
+
 
 }
