@@ -115,4 +115,18 @@ class StringCalculatorTest {
 
       assertThat(actualSum).isEqualTo(expectedSum);
    }
+
+   @ParameterizedTest
+   @MethodSource
+   void multipleDifferentLengthDelimiters(String input, int expected){
+      assertThat(stringCalculator.add(input)).isEqualTo(expected);
+   }
+
+   private static Stream<Arguments> multipleDifferentLengthDelimiters(){
+      return Stream.of(
+              arguments("//[*][%]\n1*2%3", 6),
+              arguments("//[,][,,,][%][%%]\n4,,,5%1%%3,3,3", 19),
+              arguments("//[¨¨][,][,,,][%][%%]\n4,,,5%1%%3¨¨3,3", 19)
+      );
+   }
 }
