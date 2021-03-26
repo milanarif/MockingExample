@@ -97,4 +97,13 @@ class StringCalculatorTest {
       assertThat(actualSum).isEqualTo(expectedSum);
    }
 
+   @Test
+   void anyLengthDelimiter(){
+      String inputString = "//[***]\n1***2***3";
+      int expectedSum = 6;
+
+      int actualSum = stringCalculator.add(inputString);
+
+      assertThat(actualSum).isEqualTo(expectedSum);
+   }
 }
